@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
 
 public class HomeServiceImpl implements HomeService {
@@ -15,27 +16,27 @@ public class HomeServiceImpl implements HomeService {
     private HomeRepository homeRepository;
 
     @Override
-    public Page<Home> findAllByAddressContaining(String address, Pageable pageable){
+    public Home findAllByAddressContaining(String address, Pageable pageable){
         return homeRepository.findAllByAddressContaining(address, pageable);
     }
 
     @Override
-    public Page<Home> findAll(Pageable pageable) {
-        return homeRepository.findAll(pageable);
+    public List<Home> findAll() {
+        return homeRepository.findAll();
     }
 
     @Override
-    public Optional<Home> findById(Long id) {
-        return homeRepository.findById(id);
+    public Home findById(Long id) {
+        return homeRepository.findById(id).get();
     }
 
     @Override
-    public void save(Home home) {
+    public void saveHome(Home home) {
         homeRepository.save(home);
     }
 
     @Override
-    public void remove(Long id) {
+    public void deleteHome(Long id) {
         homeRepository.deleteById(id);
     }
 

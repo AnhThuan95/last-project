@@ -4,16 +4,17 @@ import com.codegym.lastproject.model.Category;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface CategoryService {
-    Page<Category> findAllByNameContaining(String name, Pageable pageable);
+    Category findAllByNameContaining(String name, Pageable pageable);
 
-    Page<Category> findAll(Pageable pageable);
+    List<Category> findAll();
 
-    Optional<Category> findById(Long id);
+    Category findById(Long id);
 
-    void save(Category director);
+    void saveCategory(Category category);
 
-    void remove(Long id);
+    void deleteCategory(Long id);
 }

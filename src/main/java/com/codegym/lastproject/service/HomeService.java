@@ -4,17 +4,18 @@ import com.codegym.lastproject.model.Home;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface HomeService {
 
-    Page<Home> findAllByAddressContaining(String address, Pageable pageable);
+    Home findAllByAddressContaining(String address, Pageable pageable);
 
-    Page<Home> findAll(Pageable pageable);
+    List<Home> findAll();
 
-    Optional<Home> findById(Long id);
+    Home findById(Long id);
 
-    void save(Home home);
+    void saveHome(Home home);
 
-    void remove(Long id);
+    void deleteHome(Long id);
 }
