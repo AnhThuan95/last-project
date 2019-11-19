@@ -16,11 +16,6 @@ public class HomeServiceImpl implements HomeService {
     private HomeRepository homeRepository;
 
     @Override
-    public Home findAllByAddressContaining(String address, Pageable pageable){
-        return homeRepository.findAllByAddressContaining(address, pageable);
-    }
-
-    @Override
     public List<Home> findAll() {
         return homeRepository.findAll();
     }
@@ -29,6 +24,9 @@ public class HomeServiceImpl implements HomeService {
     public Home findById(Long id) {
         return homeRepository.findById(id).get();
     }
+
+    @Override
+    public Home findByAddress(String address) { return homeRepository.findByAddress(address);}
 
     @Override
     public void saveHome(Home home) {

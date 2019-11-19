@@ -8,4 +8,5 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface HomeRepository extends JpaRepository<Home, Long> {
     Home findAllByAddressContaining(String address, Pageable pageable);
+    Home findByAddress(String address);
 }

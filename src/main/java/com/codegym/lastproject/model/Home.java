@@ -24,20 +24,30 @@ public class Home {
 
     private Float priceByNight;
 
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
+    @ManyToOne
+    @JoinColumn(name = "host_id")
+    private User user;
+
     @ManyToOne
     @JoinColumn(name = "catergoty_id")
     private Category category;
 
     public Home(){}
 
-    public Home(String name, String room, String address, int bedroom, int bathroom, String description, Float priceByNight){
+    public Home(String name, Category category, User user, String room, String address, int bedroom, int bathroom, String description, Float priceByNight){
         this.name = name;
+        this.category = category;
         this.room = room;
         this.address = address;
         this.bedroom = bedroom;
         this.bathroom = bathroom;
         this.description = description;
         this.priceByNight = priceByNight;
+        this.status = status;
+        this.user = user;
     }
 
     public Long getId() {
@@ -110,5 +120,21 @@ public class Home {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

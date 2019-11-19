@@ -19,7 +19,7 @@ public class CategoryFormatter implements Formatter<Category> {
 
     @Override
     public Category parse(String text, Locale locale) throws ParseException {
-        return categoryService.findById(Long.parseLong(text)).get();
+        return categoryService.findById(Long.parseLong(text));
     }
 
     @Override

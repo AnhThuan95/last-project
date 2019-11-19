@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface HomeService {
 
-    Home findAllByAddressContaining(String address, Pageable pageable);
+    Home findByAddress(String address);
 
     List<Home> findAll();
 

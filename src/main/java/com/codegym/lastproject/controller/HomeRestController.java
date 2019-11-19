@@ -1,6 +1,7 @@
 package com.codegym.lastproject.controller;
 
 import com.codegym.lastproject.model.Home;
+import com.codegym.lastproject.service.CategoryService;
 import com.codegym.lastproject.service.HomeService;
 import com.codegym.lastproject.service.HomeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ public class HomeRestController {
     @Autowired
     private HomeService homeService;
 
+    @Autowired
+    private CategoryService categoryService;
+
     @RequestMapping(value = "/home/list", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Home>> listAllHomes() {
         List<Home> homes = homeService.findAll();
@@ -34,10 +38,10 @@ public class HomeRestController {
     @PostMapping(value = "/home/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Void> createHome(@RequestBody Home home) {
-        //Home originHome = homeService.findById(id);
-        //if (originHome != null) {
-        //    return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        //}
+        Home originHome = homeService.findByAddress(home.getAddress());
+        if (originHome != null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         System.out.println("Creating Home " + home.getName());
         homeService.saveHome(home);
         return new ResponseEntity<>(HttpStatus.OK);
